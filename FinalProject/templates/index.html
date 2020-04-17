@@ -1,0 +1,152 @@
+{% include 'head.html' %}
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+    {% if u_name %}
+        {% include 'login.html' %}
+    {% else %}
+        {% include 'logout.html' %}            
+    {% endif %}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- 창 -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- 슬라이드 창 -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="../static/travel2.jpg" alt="travel1" width="1200" height="700">
+            <div class="carousel-caption">
+                <h3>Travel</h3>
+                <p>Let's talk about our experiences.</p>
+            </div>   
+      </div>
+
+      <div class="item" role="listbox">
+        <img src="../static/travel3.jpg" alt="travel2" width="1200" height="700">     
+      </div>
+    
+      <div class="item" role="listbox">
+        <img src="../static/travel1.jpg" alt="travle3" width="1200" height="700">
+            <div class="carousel-caption">
+                <h3>Travel</h3>
+                <p>Let's talk about our experiences.</p>
+            </div>
+    </div>
+
+    <!-- 좌우 넘기기 -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<!-- 로그인 모달 -->
+<div class="modal fade" id="login" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- 로그인 내용-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span>Login</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" method="POST">
+            <div class="form-group">
+              <label for="id"><span class="glyphicon glyphicon-user"></span>ID</label>
+              <input type="text" class="form-control" id="input_id" placeholder="ID" name="input_id">
+            </div>
+            <div class="form-group">
+              <label for="password"><span class="glyphicon glyphicon-user"></span>Password</label>
+              <input type="password" class="form-control" id="pass" placeholder="Password" name="password">
+            </div>
+            <button type="submit" class="btn btn-block">Login 
+              <span class="glyphicon glyphicon-ok"></span>
+            </button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
+            <span class="glyphicon glyphicon-remove"></span> Cancel
+          </button>
+        </div>
+        {% if login_error %}
+                <h4>{{ login_error }}</h4>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- 회원가입 모달 -->
+<div class="modal fade" id="signup" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- 회원가입 내용-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Sign-Up</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" method="POST" action="{{ url_for('user_signup') }}">
+            <div class="form-group">
+                <label for="usrname"><span class="glyphicon glyphicon-user"></span>ID</label>
+                <input type="text" class="form-control" id="input_id" placeholder="Enter ID" name="input_id">
+            </div>
+            <div class="form-group">
+                <label for="usrname"><span class="glyphicon glyphicon-user"></span>username</label>
+                <input type="text" class="form-control" id="u_name" placeholder="Enter username" name="u_name">
+            </div>
+            <div class="form-group">
+                <label for="usrname"><span class="glyphicon glyphicon-user"></span>Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+            </div>
+            <button type="submit" class="btn btn-block">Sign-Up!
+              <span class="glyphicon glyphicon-ok"></span>
+            </button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
+            <span class="glyphicon glyphicon-remove"></span> Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip(); 
+  
+  //smoothe scrolling
+  $(".navbar a").on('click', function(event) {
+
+    if (this.hash !== "") {
+
+      event.preventDefault();
+
+      var hash = this.hash;
+
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        window.location.hash = hash;
+      });
+    }
+  });
+})
+</script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% include 'head.html' %}
+<body>
+    <div class="container">
+        <div class="row py-3">
+            <div class="col">
+                <h2 class="text-center py-3">회원 등록 페이지</h2>
+                <form class="form" id="signupForm" method="POST">
+                    <div class="form-group">
+                        <label for="ID">ID:</label>
+                        <input type="text" class="form-control" id="id" placeholder="Enter ID" name="input_id">
+                    </div>
+                    <div class="form-group">
+                        <label for="u_name">User name:</label>
+                        <input type="text" class="form-control" id="u_name" placeholder="Enter username" name="u_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary my-3 mx-2">회원 등록</button>
+                        <a href="{{ url_for('index') }}" class="btn btn-primary mx-2">이전 화면</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            // initialize
+        });
+    </script>
+</body>
+
+
+

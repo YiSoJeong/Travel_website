@@ -1,0 +1,45 @@
+{% include 'head.html' %}
+<body>
+    <div class="container">
+        {% include 'login.html' %}
+        <div class="row my-3">
+            <div class="col">
+                <br><br><br>
+                <h2 class="text-center py-3">여행 후기 등록</h2>
+                <form class="form" id="boardPostForm" method="POST" action="{{ url_for('board_post') }}" onsubmit="return validateForm()">
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" class="form-control" id="title" placeholder="Enter title" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Content:</label>
+                        <textarea class="form-control" id="content" placeholder="10자 이상 입력해 주세요." name="content" rows="10"></textarea>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary my-3 mx-2">게시판 글 등록</button>
+                        <a href="{{ url_for('board_travel') }}" class="btn btn-primary mx-2 text-center">이전 화면</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+            function validateForm(){
+                var title = document.getElementById("title").value;
+                if(title == ""){
+                    alert("제목을 입력해주세요.");
+                    document.getElementById("title").focus();
+                    return false;
+                }
+                
+                var ct = document.getElementById("content").value;
+                if(ct.length < 10){
+                    alert("내용을 10글자 이상 입력해주세요.");
+                    document.getElementById("content").focus();
+                    return false;
+                }
+            }   
+        </script>
+</body>
+

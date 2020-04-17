@@ -1,0 +1,36 @@
+{% include 'head.html' %}
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+    {% if u_name %}
+        {% include 'login.html' %}
+    {% else %}
+        {% include 'logout.html' %}            
+    {% endif %}
+
+  <div id="tour" class="bg-1">
+    <div class="container">
+      <br><br>
+      <h3 class="text-center">Travel</h3>
+      <p class="text-center">Share some Review with people<br> 
+        Remember your experience!</p>
+
+    <div class="nav-item col-4 text-center">
+        <form class="form-inline" method="GET">
+            <input type="search" class="form-control" name="keyword">
+            <input type="submit" class="btn btn-primary mx-2" value="검색"></button><br><br>
+        </form>
+    </div>
+    <div class="row text-center">
+    {% for row in rows %}
+   
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="../static/img.jpg" alt="image">
+          <p><strong>{{ row[2] }}</strong></p>
+          <a href="{{ url_for('board_view', board_id=row[0] ) }}"><button class="btn">More Review</button></a>
+        </div>
+      </div>
+    
+    {% endfor %}
+  </div>
+  </div>
+</body>
